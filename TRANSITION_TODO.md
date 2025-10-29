@@ -157,8 +157,8 @@ npm run dev
 - Recreate animations/interactions: 1–5 days depending on how complex the Webflow interactions are.
 
 ## Next steps I can take now (pick one or tell me which to do)
-1. Copy the site assets (`images/`, fonts) into `tempso-com/public/` so the homepage can reference them directly.
-2. Port the existing `index.html` into `src/app/page.tsx` (TypeScript/JSX) to bring the full homepage structure into the Next app. Styling conversion to Tailwind can follow.
+1. Copy the site assets (`images/`, fonts) into `tempso-com/public/` so the homepage can reference them directly. (COMPLETED)
+2. Port the existing `index.html` into `src/app/page.tsx` (TypeScript/JSX) to bring the full homepage structure into the Next app. Styling conversion to Tailwind can follow. (IN PROGRESS — initial port added to `src/app/page.tsx`)
 3. Perform a detailed audit of `css/tempso.webflow.css` and produce a mapping: selector -> Tailwind utility or scoped CSS module.
 4. Start the dev server locally and verify the app runs: `npm run dev` from `tempso-com/`.
 
