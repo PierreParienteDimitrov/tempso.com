@@ -1,7 +1,17 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["next/core-web-vitals"],
+  "plugins": [],
   "rules": {
-    "@next/next/no-img-element": "off",
-    "@next/next/no-html-link-for-pages": "off"
-  }
+    "@next/next/no-img-element": "warn",
+    "@next/next/no-html-link-for-pages": "warn",
+    "react/no-unescaped-entities": "warn",
+    "@next/next/no-page-custom-font": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "@next/next/link-passhref": "warn",
+    "@next/next/no-sync-scripts": "warn",
+    "@next/next/google-font-display": "warn",
+    "@next/next/no-title-in-document-head": "warn"
+  },
+  "ignorePatterns": ["*.config.js", "node_modules/", "public/", "out/", ".next/"]
 }
