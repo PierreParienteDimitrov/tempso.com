@@ -1,7 +1,6 @@
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/animations'
 import { IconMusicNote, IconPlaylist, IconRadio, IconWaveform } from '@/components/ui/icons'
 import { Grid } from '@/components/ui/grid'
-import Image from 'next/image'
 
 const features = [
   {

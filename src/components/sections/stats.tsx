@@ -1,7 +1,7 @@
 "use client"
 
 import { StaggerContainer, StaggerItem } from '@/components/ui/animations'
-import { motion, useMotionValue, useTransform, animate, type MotionValue } from 'framer-motion'
+import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
 import { useEffect } from 'react'
 
 const stats = [

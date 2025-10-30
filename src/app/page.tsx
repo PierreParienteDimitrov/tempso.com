@@ -1,4 +1,6 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
+import Image from 'next/image'
 import { Header } from '@/components/layout/header'
 import { Hero } from '@/components/sections/hero'
 import { Features } from '@/components/sections/features'
@@ -48,12 +50,12 @@ export default function Home() {
           <div className="footer">
             <div className="container">
               <div className="footer-wrapper">
-                <a href="/" aria-current="page" className="footer-brand w-inline-block w--current">
-                  <img src="/images/Logo-Short.png" loading="lazy" alt="" className="footer-brand-image" />
+                <Link href="/" aria-current="page" className="footer-brand w-inline-block w--current">
+                  <Image src="/images/Logo-Short.png" width={100} height={100} alt="Tempso Logo" className="footer-brand-image" />
                   <div className="footer-paragraph-holder">
                     <p>Tempso is an app created by a team of three classical music lovers with a knack for new technology. <br /><br />Contact us at info@tempso.com</p>
                   </div>
-                </a>
+                </Link>
                 <div className="footer-content">
                   <div className="footer-block">
                     <div className="title-small">Social media</div>
