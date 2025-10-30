@@ -1,0 +1,11 @@
+.buttonGradient {
+  background-image: radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.15), transparent);
+}
+
+.buttonWithArrow {
+  background-image: url('/images/Arrow-Button.svg');
+  background-position: 86%;
+  background-repeat: no-repeat;
+  background-size: auto;
+  padding-right: 36px;
+}

@@ -1,0 +1,5 @@
+.glassEffect {
+  -webkit-backdrop-filter: blur(13px);
+  backdrop-filter: blur(13px);
+  background-color: rgba(27, 27, 27, 0);
+}
