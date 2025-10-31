@@ -92,20 +92,21 @@ export function Hero() {
         </div>
 
         {/* Description Section */}
-        <div className="relative z-[1] flex flex-col items-center mt-12 mb-20">
-          <div className="text-center max-w-3xl">
+        <div className="hero-description-holder relative z-[1] flex flex-col items-center">
+          <div className="hero-description">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="fade-in-on-scroll"
             >
-              <p className="text-xl md:text-2xl mb-6">
-                Tempso is a classical music wrapper app for{' '}
-                <span className="text-green-400">Spotify</span> and{' '}
-                <span className="text-pink-400">Apple Music</span>.
+              <p className="paragraph-2 text-[32px] font-semibold text-center mb-6">
+                Tempso is a classical music wrapper app for <br />
+                <span className="text-span-2" style={{ color: '#1ed760' }}>Spotify</span> and{' '}
+                <span className="text-span-3" style={{ color: '#eb4c5f' }}>Apple Music</span>.
               </p>
-              <p className="text-base md:text-lg text-gray-300 mb-10">
+              <p className="paragraph center w-[75%] mx-auto text-center text-base md:text-lg text-gray-300 mb-10">
                 Whether you&apos;re an expert in classical music or a first-time listener, browse a well-organized catalog of composers, performers, compositions, albums, and playlists. Connect Tempso to your Spotify or Apple Music account to explore the music at no additional cost!
               </p>
             </motion.div>
@@ -116,36 +117,38 @@ export function Hero() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-4 items-center justify-center"
+              className="fade-in-on-scroll"
             >
-              <a
-                href="https://play.google.com/store/apps/details?id=com.tempso.tempso&hl=en&gl=US"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block"
-              >
-                <Image
-                  src="/images/GOOGLE-PLAY.png"
-                  alt="Get it on Google Play"
-                  width={200}
-                  height={80}
-                  className="w-[200px] h-auto hover:opacity-80 transition-opacity"
-                />
-              </a>
-              <a
-                href="https://apps.apple.com/us/app/tempso/id1493511859"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block"
-              >
-                <Image
-                  src="/images/IOS.png"
-                  alt="Download on the App Store"
-                  width={200}
-                  height={80}
-                  className="w-[200px] h-auto hover:opacity-80 transition-opacity"
-                />
-              </a>
+              <div className="w-layout-hflex flex-block flex flex-row gap-4 items-center justify-center">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.tempso.tempso&hl=en&gl=US"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-inline-block inline-block"
+                >
+                  <Image
+                    src="/images/GOOGLE-PLAY.png"
+                    alt="Get it on Google Play"
+                    width={200}
+                    height={80}
+                    className="image w-[200px] h-auto hover:opacity-80 transition-opacity"
+                  />
+                </a>
+                <a
+                  href="https://apps.apple.com/us/app/tempso/id1493511859"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-inline-block inline-block"
+                >
+                  <Image
+                    src="/images/IOS.png"
+                    alt="Download on the App Store"
+                    width={200}
+                    height={80}
+                    className="image-2 w-[200px] h-auto hover:opacity-80 transition-opacity"
+                  />
+                </a>
+              </div>
             </motion.div>
           </div>
         </div>
