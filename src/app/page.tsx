@@ -30,6 +30,9 @@ export default function Home() {
         {/* Hero Section */}
         <Hero />
 
+        {/* Testimonials */}
+        <Testimonials />
+
         {/* Stats Section */}
         <Stats />
 
@@ -38,9 +41,6 @@ export default function Home() {
 
         {/* Integration Steps */}
         <Integration />
-
-        {/* Testimonials */}
-        <Testimonials />
 
         {/* Call to Action */}
         <CTA />

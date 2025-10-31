@@ -23,17 +23,17 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section className="section overflow-hidden">
-      <div className="container text-center">
-        <h2 className="text-2xl mb-12 font-body">
+      <div className="container center">
+        <p className="paragraph-2 center">
           First-time listeners and experts alike love Tempso
-        </h2>
-        
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        </p>
+
+        <StaggerContainer className="quote-cards-holder grid grid-cols-1 md:grid-cols-3 gap-[30px] pt-[30px] px-8 mb-[60px]">
           {testimonials.map((testimonial, index) => (
             <StaggerItem key={index}>
-              <div className="bg-[linear-gradient(to_bottom,var(--gradient-01),var(--gradient-02))] border border-[#ffffff1f] rounded-lg p-5 text-left">
+              <div className={`career-cards ${!testimonial.stars ? 'no-stars' : ''} bg-[#0d0e12] rounded-[14px] flex flex-col justify-center items-center py-[35px] px-5`}>
                 {testimonial.stars && (
-                  <div className="flex gap-2 mb-4">
+                  <div className="w-layout-hflex stars flex gap-2 mb-4">
                     {[...Array(testimonial.stars)].map((_, i) => (
                       <Image
                         key={i}
@@ -41,28 +41,34 @@ export function Testimonials() {
                         alt="Star"
                         width={20}
                         height={20}
-                        className="w-5 h-5"
+                        className="start-icon w-5 h-5"
                       />
                     ))}
                   </div>
                 )}
-                
-                <p className="text-base mb-4">{testimonial.text}</p>
-                
-                {testimonial.link ? (
-                  <a
-                    href={testimonial.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
-                  >
-                    {testimonial.source}
-                  </a>
-                ) : (
-                  <span className="text-sm text-gray-400">
-                    {testimonial.source}
-                  </span>
-                )}
+
+                <div className="career-content">
+                  <div className="career-description font-body text-white text-lg leading-[1.4] mb-4">
+                    {testimonial.text}
+                  </div>
+
+                  {testimonial.link ? (
+                    <a
+                      href={testimonial.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block"
+                    >
+                      <div className="quote-date quote-link text-[#afafaf] text-base font-semibold hover:text-white transition-colors">
+                        {testimonial.source}
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="quote-date text-[#afafaf] text-base font-semibold">
+                      {testimonial.source}
+                    </div>
+                  )}
+                </div>
               </div>
             </StaggerItem>
           ))}
