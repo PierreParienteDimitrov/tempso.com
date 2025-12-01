@@ -18,7 +18,7 @@ export function Header() {
         <nav className="flex justify-between items-center w-full h-full">
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="/images/Logo-White.svg"
+              src="/images/Logo.svg"
               alt="Tempso"
               width={120}
               height={30}

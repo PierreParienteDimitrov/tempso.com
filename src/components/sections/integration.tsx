@@ -48,12 +48,14 @@ export function Integration() {
             <StaggerContainer className="space-y-12">
               {steps.map((step) => (
                 <StaggerItem key={step.number}>
-                  <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 w-12 h-12 border border-white/20 rounded-full flex items-center justify-center">
-                      <span className="text-xl font-medium">{step.number}</span>
+                  <div className="sticky-content-container flex flex-col gap-[18px] items-start">
+                    <div className="div-block-2">
+                      <div className="sticky-title border flex-shrink-0 w-16 h-16 border-2 border-[#83efdc] rounded-[20px] flex items-center justify-center text-[#83efdc] text-4xl font-bold">
+                        {step.number}
+                      </div>
                     </div>
-                    <div className="pt-2.5">
-                      <h3 className="text-2xl font-medium">{step.title}</h3>
+                    <div className="sticky-title text-4xl font-bold">
+                      {step.title}
                     </div>
                   </div>
                 </StaggerItem>
@@ -65,22 +67,25 @@ export function Integration() {
             style={{ y: phoneY }}
             className="absolute top-0 right-0 w-1/2 hidden lg:block"
           >
-            <div className="relative">
-              <Image
-                src="/images/Provider.png"
-                alt="App provider selection screen"
-                width={375}
-                height={812}
-                className="relative z-10"
-              />
-              <div className="absolute inset-0 z-20">
+            <div className="sticky-phone">
+              <div className="hero-section-phone-holder-2 relative w-full flex justify-center items-center">
                 <Image
-                  src="/images/Home_1Home.webp"
-                  alt="App home screen"
-                  width={375}
-                  height={812}
-                  className="object-cover"
+                  src="/images/Provider.png"
+                  alt="A screen showing the available providers for Tempso"
+                  width={390}
+                  height={844}
+                  className="relative z-10 w-full h-auto"
+                  sizes="(max-width: 479px) 240px, (max-width: 767px) 38vw, (max-width: 991px) 26vw, (max-width: 1439px) 28vw, 390.4140625px"
                 />
+                <div className="hero-section-phone-screenshot-holder-2 absolute inset-0 z-20" style={{ padding: '5%' }}>
+                  <Image
+                    src="/images/Home_1Home.webp"
+                    alt="App home screen"
+                    fill
+                    className="object-cover rounded-[40px]"
+                    sizes="(max-width: 479px) 216px, (max-width: 767px) 35vw, (max-width: 991px) 24vw, (max-width: 1439px) 26vw, 351.3828125px"
+                  />
+                </div>
               </div>
             </div>
           </motion.div>
