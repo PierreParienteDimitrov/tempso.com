@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 50",
     "type-check": "tsc --noEmit",
+    "pre-push": "npm run type-check && npm run lint && npm run build",
     "check": "npm run lint && npm run type-check && npm run build",
-    "prepare": "echo \"#!/bin/sh\nnpm run check\" > .git/hooks/pre-push && chmod +x .git/hooks/pre-push"
+    "prepare": "echo \"#!/bin/sh\\nnpm run pre-push\" > .git/hooks/pre-push && chmod +x .git/hooks/pre-push"
   },
   "dependencies": {
     "clsx": "^2.1.1",
