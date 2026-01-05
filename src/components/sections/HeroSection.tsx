@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { PageSection } from "@/components/layout/PageSection";
 import { Button } from "@/components/ui/button";
+import MobileHomepagePreview from "@/components/sections/home/MobileHomepagePreview";
 
 export function HeroSection() {
   return (
@@ -57,20 +58,9 @@ export function HeroSection() {
 
           {/* Right Column: Visual/Mockup */}
           <div className="relative w-full max-w-[300px] mx-auto lg:max-w-none lg:ml-auto flex justify-center">
-            {/* Placeholder for Phone Mockup */}
-            <div className="relative aspect-[9/16] w-full max-w-sm bg-gray-800 rounded-[3rem] border-8 border-gray-900 shadow-2xl flex items-center justify-center overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-black opacity-50" />
-              <span className="relative z-10 text-gray-500 font-medium">
-                App Mockup
-              </span>
-
-              {/* Decorative Elements */}
-              <div className="absolute top-1/4 -right-12 bg-slate-800/80 backdrop-blur px-4 py-2 rounded-lg border border-white/10 text-xs text-gray-300 shadow-xl transform rotate-3">
-                Symphony No. 3
-              </div>
-              <div className="absolute bottom-1/4 -left-8 bg-slate-800/80 backdrop-blur px-4 py-2 rounded-lg border border-white/10 text-xs text-gray-300 shadow-xl transform -rotate-2">
-                Compare Recordings
-              </div>
+            {/* Phone Mockup with Mobile Homepage */}
+            <div className="relative aspect-[9/16] w-full max-w-sm bg-gray-800 rounded-[3rem] border-8 border-gray-900 shadow-2xl overflow-hidden">
+              <MobileHomepagePreview />
             </div>
           </div>
         </div>
