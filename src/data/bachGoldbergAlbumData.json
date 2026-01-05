@@ -1,0 +1,468 @@
+{
+  "composer": {
+    "full_name": "Johann Sebastian Bach",
+    "picture_url": "https://i.scdn.co/image/a2ec08fe69ecec2748fbc764aede8f1b03ae8f88",
+    "period": "Baroque"
+  },
+  "composition": {
+    "title": "Goldberg-Variationen, BWV 988"
+  },
+  "recordings": [
+      {
+        "id": 775379,
+      "year_of_recording": 2025,
+        "title": "Goldberg-Variationen, BWV 988",
+        "category": null,
+        "album_id": 166390,
+        "work_id": 4912,
+        "composer_id": 14,
+        "album": {
+          "picture_url": "https://i.scdn.co/image/ab67616d0000b273a5c9c293e208cb07227024f0",
+          "popularity": null,
+          "duration_ms": 4464435,
+          "name": "Bach - Goldberg Variations & French Suites",
+        "release_date": "2025-01-15",
+          "label": {
+          "id": 6561,
+          "name": "harmonia mundi"
+          }
+        },
+        "artists": [
+          {
+          "id": 2001,
+          "full_name": "Benjamin Alard",
+            "spotify_uri": null,
+            "picture_url": null,
+            "instrument": {
+            "name": "harpsichord"
+          }
+          }
+        ],
+        "tracks": [
+          {
+            "track_number": 1,
+            "spotify_uri": "5Tb6OhSoOQT4rkQrfA10Wg",
+            "duration_ms": 288573,
+          "spotify_name": "Goldberg Variations, BWV 988: Aria in G Major"
+          },
+          {
+            "track_number": 2,
+            "spotify_uri": "1RAoVvkovXW7zpCneoCNxg",
+            "duration_ms": 103333,
+            "spotify_name": "Goldberg Variations, BWV 988: Var. 1"
+          },
+          {
+            "track_number": 3,
+            "spotify_uri": "332aalSer1Pz4CerBCeTf3",
+            "duration_ms": 96268,
+            "spotify_name": "Goldberg Variations, BWV 988: Var. 2"
+          }
+        ]
+      },
+      {
+        "id": 775380,
+      "year_of_recording": 2024,
+      "title": "Goldberg-Variationen, BWV 988",
+        "category": null,
+      "album_id": 166391,
+      "work_id": 4912,
+        "composer_id": 14,
+        "album": {
+          "picture_url": "https://i.scdn.co/image/ab67616d0000b273a5c9c293e208cb07227024f0",
+          "popularity": null,
+        "duration_ms": 4464435,
+        "name": "Bach - Goldberg Variations",
+        "release_date": "2024-06-20",
+          "label": {
+          "id": 6562,
+          "name": "Erato"
+          }
+        },
+        "artists": [
+          {
+          "id": 2002,
+          "full_name": "David Fray",
+            "spotify_uri": null,
+            "picture_url": null,
+            "instrument": {
+            "name": "piano"
+            }
+          }
+        ],
+        "tracks": [
+          {
+          "track_number": 1,
+          "spotify_uri": "5Tb6OhSoOQT4rkQrfA10Wg",
+          "duration_ms": 288573,
+          "spotify_name": "Goldberg Variations, BWV 988: Aria"
+        },
+        {
+          "track_number": 2,
+          "spotify_uri": "1RAoVvkovXW7zpCneoCNxg",
+          "duration_ms": 103333,
+          "spotify_name": "Goldberg Variations, BWV 988: Var. 1"
+          }
+        ]
+      },
+      {
+      "id": 775381,
+      "year_of_recording": 2023,
+      "title": "Goldberg-Variationen, BWV 988",
+      "category": null,
+      "album_id": 166392,
+      "work_id": 4912,
+      "composer_id": 14,
+      "album": {
+        "picture_url": "https://i.scdn.co/image/ab67616d0000b273a5c9c293e208cb07227024f0",
+        "popularity": null,
+        "duration_ms": 4464435,
+        "name": "Bach - Goldberg Variations",
+        "release_date": "2023-01-02",
+        "label": {
+          "id": 6560,
+          "name": "UME - Global Clearing House"
+        }
+      },
+      "artists": [
+        {
+          "id": 1278,
+          "full_name": "Andrei Gavrilov",
+          "spotify_uri": null,
+          "picture_url": null,
+          "instrument": {
+            "name": "Piano"
+          }
+        }
+      ],
+      "tracks": [
+        {
+          "track_number": 1,
+          "spotify_uri": "5Tb6OhSoOQT4rkQrfA10Wg",
+          "duration_ms": 288573,
+          "spotify_name": "Goldberg Variations, BWV 988: Aria"
+        },
+        {
+          "track_number": 2,
+          "spotify_uri": "1RAoVvkovXW7zpCneoCNxg",
+          "duration_ms": 103333,
+          "spotify_name": "Goldberg Variations, BWV 988: Var. 1"
+        }
+      ]
+    },
+    {
+      "id": 775382,
+      "year_of_recording": 2022,
+      "title": "Goldberg-Variationen, BWV 988",
+      "category": null,
+      "album_id": 166393,
+      "work_id": 4912,
+      "composer_id": 14,
+      "album": {
+        "picture_url": "https://i.scdn.co/image/ab67616d0000b273a5c9c293e208cb07227024f0",
+        "popularity": null,
+        "duration_ms": 4464435,
+        "name": "Bach - Goldberg Variations",
+        "release_date": "2022-09-15",
+        "label": {
+          "id": 6563,
+          "name": "Deutsche Grammophon"
+        }
+      },
+      "artists": [
+        {
+          "id": 2003,
+          "full_name": "András Schiff",
+          "spotify_uri": null,
+          "picture_url": null,
+          "instrument": {
+            "name": "piano"
+          }
+        }
+      ],
+      "tracks": [
+        {
+          "track_number": 1,
+          "spotify_uri": "5Tb6OhSoOQT4rkQrfA10Wg",
+          "duration_ms": 288573,
+          "spotify_name": "Goldberg Variations, BWV 988: Aria"
+        },
+        {
+          "track_number": 2,
+          "spotify_uri": "1RAoVvkovXW7zpCneoCNxg",
+          "duration_ms": 103333,
+          "spotify_name": "Goldberg Variations, BWV 988: Var. 1"
+        }
+      ]
+    },
+    {
+      "id": 775383,
+      "year_of_recording": 2021,
+      "title": "Goldberg-Variationen, BWV 988",
+      "category": null,
+      "album_id": 166394,
+      "work_id": 4912,
+      "composer_id": 14,
+      "album": {
+        "picture_url": "https://i.scdn.co/image/ab67616d0000b273a5c9c293e208cb07227024f0",
+        "popularity": null,
+        "duration_ms": 4464435,
+        "name": "Bach - Goldberg Variations",
+        "release_date": "2021-03-10",
+        "label": {
+          "id": 6564,
+          "name": "Sony Classical"
+        }
+      },
+      "artists": [
+        {
+          "id": 2004,
+          "full_name": "Murray Perahia",
+          "spotify_uri": null,
+          "picture_url": null,
+          "instrument": {
+            "name": "piano"
+          }
+        }
+      ],
+      "tracks": [
+        {
+          "track_number": 1,
+          "spotify_uri": "5Tb6OhSoOQT4rkQrfA10Wg",
+          "duration_ms": 288573,
+          "spotify_name": "Goldberg Variations, BWV 988: Aria"
+        },
+        {
+          "track_number": 2,
+          "spotify_uri": "1RAoVvkovXW7zpCneoCNxg",
+          "duration_ms": 103333,
+          "spotify_name": "Goldberg Variations, BWV 988: Var. 1"
+        }
+      ]
+    },
+    {
+      "id": 775384,
+      "year_of_recording": 2020,
+      "title": "Goldberg-Variationen, BWV 988",
+      "category": null,
+      "album_id": 166395,
+      "work_id": 4912,
+      "composer_id": 14,
+      "album": {
+        "picture_url": "https://i.scdn.co/image/ab67616d0000b273a5c9c293e208cb07227024f0",
+        "popularity": null,
+        "duration_ms": 4464435,
+        "name": "Bach - Goldberg Variations",
+        "release_date": "2020-11-20",
+        "label": {
+          "id": 6565,
+          "name": "ECM Records"
+        }
+      },
+      "artists": [
+        {
+          "id": 2005,
+          "full_name": "Keith Jarrett",
+          "spotify_uri": null,
+          "picture_url": null,
+          "instrument": {
+            "name": "piano"
+          }
+        }
+      ],
+      "tracks": [
+        {
+          "track_number": 1,
+          "spotify_uri": "5Tb6OhSoOQT4rkQrfA10Wg",
+          "duration_ms": 288573,
+          "spotify_name": "Goldberg Variations, BWV 988: Aria"
+        },
+        {
+          "track_number": 2,
+          "spotify_uri": "1RAoVvkovXW7zpCneoCNxg",
+          "duration_ms": 103333,
+          "spotify_name": "Goldberg Variations, BWV 988: Var. 1"
+        }
+      ]
+    },
+    {
+      "id": 775385,
+      "year_of_recording": 2019,
+      "title": "Goldberg-Variationen, BWV 988",
+      "category": null,
+      "album_id": 166396,
+      "work_id": 4912,
+      "composer_id": 14,
+      "album": {
+        "picture_url": "https://i.scdn.co/image/ab67616d0000b273a5c9c293e208cb07227024f0",
+        "popularity": null,
+        "duration_ms": 4464435,
+        "name": "Bach - Goldberg Variations",
+        "release_date": "2019-05-14",
+        "label": {
+          "id": 6566,
+          "name": "Alpha Classics"
+        }
+      },
+      "artists": [
+        {
+          "id": 2006,
+          "full_name": "Céline Frisch",
+          "spotify_uri": null,
+          "picture_url": null,
+          "instrument": {
+            "name": "harpsichord"
+          }
+        }
+      ],
+      "tracks": [
+        {
+          "track_number": 1,
+          "spotify_uri": "5Tb6OhSoOQT4rkQrfA10Wg",
+          "duration_ms": 288573,
+          "spotify_name": "Goldberg Variations, BWV 988: Aria"
+        },
+        {
+          "track_number": 2,
+          "spotify_uri": "1RAoVvkovXW7zpCneoCNxg",
+          "duration_ms": 103333,
+          "spotify_name": "Goldberg Variations, BWV 988: Var. 1"
+        }
+      ]
+    },
+    {
+      "id": 775386,
+      "year_of_recording": 2018,
+      "title": "Goldberg-Variationen, BWV 988",
+      "category": null,
+      "album_id": 166397,
+      "work_id": 4912,
+      "composer_id": 14,
+      "album": {
+        "picture_url": "https://i.scdn.co/image/ab67616d0000b273a5c9c293e208cb07227024f0",
+        "popularity": null,
+        "duration_ms": 4464435,
+        "name": "Bach - Goldberg Variations",
+        "release_date": "2018-08-30",
+        "label": {
+          "id": 6567,
+          "name": "Hyperion"
+        }
+      },
+      "artists": [
+        {
+          "id": 2007,
+          "full_name": "Angela Hewitt",
+          "spotify_uri": null,
+          "picture_url": null,
+          "instrument": {
+            "name": "piano"
+          }
+        }
+      ],
+      "tracks": [
+        {
+          "track_number": 1,
+          "spotify_uri": "5Tb6OhSoOQT4rkQrfA10Wg",
+          "duration_ms": 288573,
+          "spotify_name": "Goldberg Variations, BWV 988: Aria"
+        },
+        {
+          "track_number": 2,
+          "spotify_uri": "1RAoVvkovXW7zpCneoCNxg",
+          "duration_ms": 103333,
+          "spotify_name": "Goldberg Variations, BWV 988: Var. 1"
+        }
+      ]
+    },
+    {
+      "id": 775387,
+      "year_of_recording": 2017,
+      "title": "Goldberg-Variationen, BWV 988",
+      "category": null,
+      "album_id": 166398,
+      "work_id": 4912,
+      "composer_id": 14,
+      "album": {
+        "picture_url": "https://i.scdn.co/image/ab67616d0000b273a5c9c293e208cb07227024f0",
+        "popularity": null,
+        "duration_ms": 4464435,
+        "name": "Bach - Goldberg Variations",
+        "release_date": "2017-12-01",
+        "label": {
+          "id": 6568,
+          "name": "Naxos"
+        }
+      },
+      "artists": [
+        {
+          "id": 2008,
+          "full_name": "Jory Vinikour",
+          "spotify_uri": null,
+          "picture_url": null,
+          "instrument": {
+            "name": "harpsichord"
+          }
+        }
+      ],
+      "tracks": [
+        {
+          "track_number": 1,
+          "spotify_uri": "5Tb6OhSoOQT4rkQrfA10Wg",
+          "duration_ms": 288573,
+          "spotify_name": "Goldberg Variations, BWV 988: Aria"
+        },
+        {
+          "track_number": 2,
+          "spotify_uri": "1RAoVvkovXW7zpCneoCNxg",
+          "duration_ms": 103333,
+          "spotify_name": "Goldberg Variations, BWV 988: Var. 1"
+        }
+      ]
+    },
+    {
+      "id": 775388,
+      "year_of_recording": 2016,
+      "title": "Goldberg-Variationen, BWV 988",
+      "category": null,
+      "album_id": 166399,
+      "work_id": 4912,
+      "composer_id": 14,
+      "album": {
+        "picture_url": "https://i.scdn.co/image/ab67616d0000b273a5c9c293e208cb07227024f0",
+        "popularity": null,
+        "duration_ms": 4464435,
+        "name": "Bach - Goldberg Variations",
+        "release_date": "2016-04-22",
+        "label": {
+          "id": 6569,
+          "name": "Warner Classics"
+        }
+      },
+      "artists": [
+        {
+          "id": 2009,
+          "full_name": "Víkingur Ólafsson",
+          "spotify_uri": null,
+          "picture_url": null,
+          "instrument": {
+            "name": "piano"
+          }
+        }
+      ],
+      "tracks": [
+        {
+          "track_number": 1,
+          "spotify_uri": "5Tb6OhSoOQT4rkQrfA10Wg",
+          "duration_ms": 288573,
+          "spotify_name": "Goldberg Variations, BWV 988: Aria"
+        },
+        {
+          "track_number": 2,
+          "spotify_uri": "1RAoVvkovXW7zpCneoCNxg",
+          "duration_ms": 103333,
+          "spotify_name": "Goldberg Variations, BWV 988: Var. 1"
+        }
+      ]
+    }
+  ]
+}

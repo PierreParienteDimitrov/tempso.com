@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "@/components/layout/Container";
 import { PageSection } from "@/components/layout/PageSection";
+import MobileHomepagePreview from "@/components/sections/home/MobileHomepagePreview";
 
 export function ScreensSection() {
   const screens = [
@@ -30,10 +31,16 @@ export function ScreensSection() {
               key={idx}
               className="snap-center flex-shrink-0 w-[280px] sm:w-[320px] flex flex-col"
             >
-              <div className="aspect-[9/16] bg-gray-100 rounded-3xl border border-gray-200 mb-6 flex items-center justify-center shadow-sm">
-                <span className="text-gray-400 font-medium">
-                  Screen {idx + 1}
-                </span>
+              <div className="aspect-[9/16] bg-gray-100 rounded-3xl border border-gray-200 mb-6 overflow-hidden shadow-sm">
+                {idx === 0 ? (
+                  <MobileHomepagePreview />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <span className="text-gray-400 font-medium">
+                      Screen {idx + 1}
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="text-center">
                 <h3 className="text-lg font-bold text-gray-900">

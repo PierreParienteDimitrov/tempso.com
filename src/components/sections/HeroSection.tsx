@@ -1,10 +1,9 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { PageSection } from "@/components/layout/PageSection";
 import { Button } from "@/components/ui/button";
-import MobileHomepagePreview from "@/components/sections/home/MobileHomepagePreview";
+import CompareScreenPreview from "@/components/sections/home/CompareScreenPreview";
 
 export function HeroSection() {
   return (
@@ -58,9 +57,9 @@ export function HeroSection() {
 
           {/* Right Column: Visual/Mockup */}
           <div className="relative w-full max-w-[300px] mx-auto lg:max-w-none lg:ml-auto flex justify-center">
-            {/* Phone Mockup with Mobile Homepage */}
+            {/* Phone Mockup with Compare Screen */}
             <div className="relative aspect-[9/16] w-full max-w-sm bg-gray-800 rounded-[3rem] border-8 border-gray-900 shadow-2xl overflow-hidden">
-              <MobileHomepagePreview />
+              <CompareScreenPreview />
             </div>
           </div>
         </div>

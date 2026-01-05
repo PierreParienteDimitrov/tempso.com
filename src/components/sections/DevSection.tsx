@@ -15,7 +15,7 @@ export function DevSection() {
               Open source. Open data. Open contribution.
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Tempso isn't just an app; it's a platform for the future of
+              Tempso isn&apos;t just an app; it&apos;s a platform for the future of
               musicology. Our schemas, tools, and client applications are open
               for you to explore and improve.
             </p>

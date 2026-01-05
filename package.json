@@ -35,6 +35,9 @@
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   },
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "overrides": {
     "baseline-browser-mapping": "^2.8.32"
   }

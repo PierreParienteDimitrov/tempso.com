@@ -45,12 +45,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     )
 
     if (asChild) {
-      const child = React.Children.only(children) as React.ReactElement<any>
+      const child = React.Children.only(children) as React.ReactElement<React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }>
+      // eslint-disable-next-line react-hooks/refs
       return React.cloneElement(child, {
         className: cn(buttonClassName, child.props?.className),
-        ref,
-        ...(child.props || {}),
-      })
+        ref: ref as React.Ref<HTMLElement>,
+        ...child.props,
+      } as React.HTMLAttributes<HTMLElement>)
     }
 
     return (

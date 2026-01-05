@@ -2,8 +2,6 @@ import React from "react";
 import { Container } from "@/components/layout/Container";
 import { PageSection } from "@/components/layout/PageSection";
 import { Button } from "@/components/ui/button";
-// Assuming an input component exists, otherwise standard input
-import { TextField } from "@/components/ui/text-field";
 
 export function ComingSoonSection() {
   return (
@@ -16,7 +14,7 @@ export function ComingSoonSection() {
               What’s next for Tempso.
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              We're bringing the Tempso experience to the web and completely
+              We&apos;re bringing the Tempso experience to the web and completely
               redesigning our mobile app.
             </p>
 

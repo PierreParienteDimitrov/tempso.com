@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import styles from './hero.module.css'
+import CompareScreenPreview from './home/CompareScreenPreview'
 
 export function Hero() {
   return (
@@ -79,13 +80,9 @@ export function Hero() {
               />
               {/* App screenshot overlay */}
               <div className="absolute inset-0 z-[2]" style={{ padding: '2.5% 41% 34% 13%' }}>
-                <Image
-                  src="/images/Hero-screen.png"
-                  alt="Tempso app screen"
-                  width={3306}
-                  height={7176}
-                  className="w-full h-full object-cover rounded-[20px]"
-                />
+                <div className="w-full h-full rounded-[20px] overflow-hidden">
+                  <CompareScreenPreview />
+                </div>
               </div>
             </motion.div>
           </div>

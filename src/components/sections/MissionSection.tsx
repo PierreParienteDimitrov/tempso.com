@@ -15,7 +15,7 @@ export function MissionSection() {
               The open, community-powered classical music database.
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              We are building the world's most comprehensive open graph of
+              We are building the world&apos;s most comprehensive open graph of
               classical music. Data that belongs to everyone, accessible to
               everyone.
             </p>
