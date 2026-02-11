@@ -16,7 +16,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Tempso - Classical music for all",
-  description: "Tempso is a classical music wrapper app for Spotify and Apple Music.",
+  description: "The free classical music app for Spotify and Apple Music. Browse composers, compare recordings, and explore 2M+ tracks organized properly.",
   icons: {
     icon: '/images/favicon.png',
     apple: '/images/webclip.png',

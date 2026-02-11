@@ -6,9 +6,23 @@
 :root {
   --headings: var(--font-manrope);
   --paragraphs: var(--font-inter);
-  --color-background: #ffffff;
-  --color-foreground: #000000;
-  --royal-blue: #0266ff;
+
+  /* Tempso dark theme palette (from tempso-app) */
+  --color-bg-base: #131313;
+  --color-bg-surface: #171717;
+  --color-bg-elevated: #2c2929;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #aaa6a6;
+  --color-text-tertiary: #7b7575;
+  --color-border-subtle: #2c2929;
+  --color-border-muted: #3f3c3c;
+
+  /* Era accent colors */
+  --color-era-baroque: #fcea88;
+  --color-era-classical: #86d3f6;
+  --color-era-modern: #83efdc;
+  --color-era-contemporary: #8583ef;
+  --color-era-romantic: #ef8383;
 }
 
 @layer base {
@@ -17,9 +31,9 @@
     scroll-behavior: smooth;
   }
 
-  /* Core typography styles */
   body {
-    @apply bg-white text-gray-900 font-body text-base antialiased;
+    @apply text-white text-base antialiased font-body;
+    background-color: var(--color-bg-base);
   }
 
   h1, h2, h3, h4, h5, h6 {

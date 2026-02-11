@@ -1,25 +1,27 @@
-import { HeroSection } from "@/components/sections/HeroSection";
+import { Hero } from "@/components/sections/hero";
 import { ProblemSection } from "@/components/sections/ProblemSection";
-import { SolutionSection } from "@/components/sections/SolutionSection";
-import { ScreensSection } from "@/components/sections/ScreensSection";
-import { MissionSection } from "@/components/sections/MissionSection";
-import { DevSection } from "@/components/sections/DevSection";
-import { ComingSoonSection } from "@/components/sections/ComingSoonSection";
-import { AboutSection } from "@/components/sections/AboutSection";
+import { FeaturesSection } from "@/components/sections/FeaturesSection";
+import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { StatsSection } from "@/components/sections/StatsSection";
+import { DownloadCTASection } from "@/components/sections/DownloadCTASection";
 import { Footer } from "@/components/sections/Footer";
+import { Navbar } from "@/components/layout/Navbar";
 
 export default function Home() {
   return (
-    <main>
-      <HeroSection />
-      <ProblemSection />
-      <SolutionSection />
-      <ScreensSection />
-      <MissionSection />
-      <DevSection />
-      <ComingSoonSection />
-      <AboutSection />
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <ProblemSection />
+        <FeaturesSection />
+        <HowItWorksSection />
+        <TestimonialsSection />
+        <StatsSection />
+        <DownloadCTASection />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
