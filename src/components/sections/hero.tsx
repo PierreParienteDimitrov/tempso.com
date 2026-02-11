@@ -2,12 +2,17 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import CompareScreenPreview from './home/CompareScreenPreview'
+import dynamic from 'next/dynamic'
+
+const StaveAnimation = dynamic(
+  () => import('@/components/three/StaveAnimation').then(mod => ({ default: mod.StaveAnimation })),
+  { ssr: false }
+)
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-screen flex flex-col">
-      {/* Placeholder background for future Three.js animation */}
+    <section className="relative overflow-hidden min-h-screen flex flex-col items-center justify-center">
+      {/* Gradient fallback background */}
       <div className="absolute inset-0 -z-10">
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[1000px] h-[800px] opacity-30"
@@ -19,7 +24,11 @@ export function Hero() {
         <div className="absolute inset-0 bg-[#131313]/60" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 w-full flex flex-col items-center text-center pt-32 pb-8 flex-1">
+      {/* Three.js stave animation — behind text */}
+      <StaveAnimation />
+
+      {/* Hero content — above animation */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 w-full flex flex-col items-center text-center pt-32 pb-24">
         {/* Rating pill */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -108,35 +117,6 @@ export function Hero() {
         >
           Free to download. Works with your existing subscription.
         </motion.p>
-
-        {/* Phone showcase — constrained */}
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="relative mt-16 w-full max-w-[600px]"
-        >
-          <div
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] opacity-20"
-            style={{
-              background: 'radial-gradient(ellipse at center, #86d3f6, transparent 70%)',
-              filter: 'blur(60px)',
-            }}
-          />
-          <Image
-            src="/images/iPhone---Hand_1iPhone - Hand.webp"
-            alt="Hand holding phone showing Tempso"
-            width={1320}
-            height={900}
-            className="w-full h-auto relative z-[1]"
-            priority
-          />
-          <div className="absolute inset-0 z-[2]" style={{ padding: '2.5% 41% 34% 13%' }}>
-            <div className="w-full h-full rounded-[20px] overflow-hidden">
-              <CompareScreenPreview />
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )
