@@ -1,0 +1,49 @@
+name: CI
+
+# The backstop for the pre-push hook: `--no-verify` and cloud sessions skip
+# hooks, CI doesn't. No path filters on purpose: a filter is one more thing
+# that can silently skip it, and a change to public/app-config.json (which the
+# live apps' force-update gate reads) must never merge unchecked. There is no
+# push trigger: the site deploys from main on merge, and the PR run already
+# gated it.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  # Keyed on the ref, never the sha: a sha-keyed group is a new group per
+  # commit, so cancel-in-progress never has a superseded run to cancel.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    name: bin/check --full
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # The build script uses PIPESTATUS, a bash feature, and npm runs scripts
+      # with /bin/sh, which is dash on ubuntu. This makes npm use bash, as it
+      # effectively does on macOS.
+      NPM_CONFIG_SCRIPT_SHELL: bash
+    steps:
+      - uses: actions/checkout@v7
+
+      # package.json engines asks for Node >=24.
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+
+      # `npm ci` also runs the `prepare` script, which points core.hooksPath
+      # at .githooks; harmless here, and the same install a clone does.
+      - run: npm ci
+
+      # No secrets: the build reads no environment variable (no process.env
+      # anywhere in the source or the configs), so nothing is set for it.
+      - run: bin/check --full

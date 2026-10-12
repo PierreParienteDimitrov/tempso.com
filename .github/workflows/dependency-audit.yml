@@ -1,0 +1,36 @@
+name: Dependency audit
+
+# Weekly `npm audit --omit=dev`. It fails on any advisory in the production
+# dependency tree, so the red run is the alert. Dev-only advisories (the build
+# toolchain) are out of scope here; they are tracked in .claude/PROJECT-FACTS.md.
+# PRs are not audited: an advisory published against an unchanged lockfile
+# should not block unrelated work, so it surfaces here instead.
+
+on:
+  schedule:
+    # Monday 13:00 UTC
+    - cron: "0 13 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  npm-audit:
+    name: npm audit --omit=dev
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      # Audits package-lock.json against the registry, so no npm ci is needed.
+      # Exits non-zero on any advisory.
+      - run: npm audit --omit=dev
