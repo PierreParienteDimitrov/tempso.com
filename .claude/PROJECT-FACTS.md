@@ -5,8 +5,8 @@ procedures ported from another codebase; this file is what makes them true here.
 
 Measured 2026-08-16 at `315e16e`. §2, §6, §12 and the baselines were updated
 2026-10-12 (TEM-127) for the gate and CI added by TEM-125 and TEM-127; the rest
-is as measured in August. **This repo has no `CLAUDE.md`** — unlike the other
-three — so until one exists this file is the only written guidance here.
+is as measured in August. `CLAUDE.md` (added 2026-10-13) holds the working
+rules; this file holds only the skill bindings.
 
 ## 1. Deployables
 
