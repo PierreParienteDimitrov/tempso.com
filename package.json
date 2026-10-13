@@ -8,9 +8,9 @@
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 50",
     "type-check": "tsc --noEmit",
-    "pre-push": "npm run type-check && npm run lint && npm run build",
-    "check": "npm run lint && npm run type-check && npm run build",
-    "prepare": "echo \"#!/bin/sh\\nnpm run pre-push\" > .git/hooks/pre-push && chmod +x .git/hooks/pre-push"
+    "pre-push": "bin/check",
+    "check": "bin/check",
+    "prepare": "git config core.hooksPath .githooks 2>/dev/null || true"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
@@ -18,7 +18,7 @@
     "@react-three/postprocessing": "^3.0.4",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.24",
-    "next": "16.0.10",
+    "next": "16.4.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "tailwind-merge": "^3.3.1",
@@ -33,7 +33,7 @@
     "autoprefixer": "^10.4.16",
     "baseline-browser-mapping": "^2.8.32",
     "eslint": "^9",
-    "eslint-config-next": "16.0.10",
+    "eslint-config-next": "16.4.0",
     "postcss": "^8.4.31",
     "postcss-import": "^16.1.1",
     "postcss-preset-env": "^10.4.0",
