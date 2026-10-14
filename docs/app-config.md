@@ -29,4 +29,4 @@ iOS and Android build numbers are independent, so set each platform on its own.
    - Soft prompt: set `latest_build` to the new build number.
    - Force update: set `min_supported_build` to the oldest build you still allow. Users below it are blocked.
 3. Keep `min_supported_build <= latest_build`.
-4. Validate with `python3 -m json.tool public/app-config.json`, then commit and deploy. A wrong `min_supported_build` locks users out, so double-check the numbers before merging.
+4. Validate with `bin/check` (runs `scripts/check-app-config.mjs`; `bin/check --fast` skips the build), then commit and deploy. CI runs the same gate on every pull request. A wrong `min_supported_build` locks users out, so double-check the numbers before merging.

@@ -1,0 +1,181 @@
+#!/bin/bash
+
+# Pre-commit hook: fast, stdlib-only sanity checks on the STAGED content.
+#
+# Version-controlled so every clone and worktree gets it. Git uses this file when
+# core.hooksPath is .githooks, which `npm ci` / `npm install` set through the
+# `prepare` script (worktrees share the repo config and inherit it).
+#
+# DESIGN CONSTRAINT: this runs on EVERY commit, so it must stay well under a
+# second. It reads staged blobs only: no node, no network, no build.
+# Anything slower belongs in pre-push (which runs bin/check).
+
+set -e
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+# The ONE implementation of the path rules (section 1 below). Both the real run
+# and --self-test call THIS, so the test cannot quietly drift into asserting a
+# second copy of the logic.
+#
+# No `.env` exemption: .gitignore ignores `.env*` and this repo has no
+# `.env.example`. If one is ever added, exempt its exact basename here and pin
+# it in the self-test in the same commit.
+#
+# auth.json is Composer's credentials file; *.pem / *.p12 / *.p8 are keys and
+# certificates. None of them has any business in a Next.js site.
+forbidden_in() {
+  echo "$1" | grep -E '(^|/)\.env[^/]*$|(^|/)node_modules/|(^|/)\.next/|(^|/)\.DS_Store$|\.(pem|p12|p8)$|(^|/)auth\.json$' || true
+}
+
+# Already-tracked images that are allowed past the 2 MB rule. Exact paths, so a
+# new large image anywhere else (or a renamed copy) still trips it.
+oversize_allowed() {
+  case "$1" in
+  public/images/Artists.png | public/images/Hero-screen.png | public/images/Playlists.png) return 0 ;;
+  *) return 1 ;;
+  esac
+}
+
+# Pinned control for the rules above: both directions are asserted, so a rule
+# that never fires (or an exemption that is too wide) fails here.
+if [ "$1" = "--self-test" ]; then
+  st_fail=0
+  st_check() { # st_check <path> <blocked|allowed>
+    local got want="$2" verdict
+    got="$(forbidden_in "$1")"
+    if [ -n "$got" ]; then verdict=blocked; else verdict=allowed; fi
+    if [ "$verdict" != "$want" ]; then
+      echo "  x $1: expected $want, got $verdict"
+      st_fail=1
+    else
+      echo "  ok $1 -> $verdict"
+    fi
+  }
+  st_size() { # st_size <path> <counted|exempt>
+    local verdict want="$2"
+    if oversize_allowed "$1"; then verdict=exempt; else verdict=counted; fi
+    if [ "$verdict" != "$want" ]; then
+      echo "  x size rule $1: expected $want, got $verdict"
+      st_fail=1
+    else
+      echo "  ok size rule $1 -> $verdict"
+    fi
+  }
+  st_check ".env"                                  blocked
+  st_check ".env.local"                            blocked
+  st_check ".env.production.local"                 blocked
+  st_check ".env.example"                          blocked
+  st_check "src/.env"                              blocked
+  st_check "node_modules/next/package.json"        blocked
+  st_check "src/node_modules/x.js"                 blocked
+  st_check ".next/build-manifest.json"             blocked
+  st_check ".next/server/app/page.js"              blocked
+  st_check ".DS_Store"                             blocked
+  st_check "public/images/.DS_Store"               blocked
+  st_check "certs/localhost.pem"                   blocked
+  st_check "certs/signing.p12"                     blocked
+  st_check "AuthKey_ABC123.p8"                     blocked
+  st_check "auth.json"                             blocked
+  st_check "config/auth.json"                      blocked
+  # Near-misses the anchors exist for: these must stay committable.
+  st_check "src/lib/env.ts"                        allowed
+  st_check "docs/.env-setup.md/readme.md"          allowed
+  st_check "src/components/next/Button.tsx"        allowed
+  st_check "src/data/oauth.json"                   allowed
+  st_check "public/app-config.json"                allowed
+  st_check "package.json"                          allowed
+  st_check "package-lock.json"                     allowed
+  st_check "next.config.js"                        allowed
+  st_check "src/app/page.tsx"                      allowed
+  st_check "public/images/Hero-screen.png"         allowed
+  st_check ".githooks/pre-commit"                  allowed
+  st_size "public/images/Artists.png"              exempt
+  st_size "public/images/Hero-screen.png"          exempt
+  st_size "public/images/Playlists.png"            exempt
+  st_size "public/images/Hero-screen-p-3200.png"   counted
+  st_size "public/images/sub/Artists.png"          counted
+  st_size "public/video/hero.mp4"                  counted
+  if [ "$st_fail" = "1" ]; then
+    echo "[Pre-commit] Self-test FAILED"
+    exit 1
+  fi
+  echo "[Pre-commit] Self-test passed"
+  exit 0
+fi
+
+# Raw UTF-8 paths: some tracked images have emoji names, which git would
+# otherwise print quoted and escaped.
+g() { git -c core.quotePath=false "$@"; }
+
+# Staged, still-present files (Added/Copied/Modified, not deletions).
+STAGED="$(g diff --cached --name-only --diff-filter=ACM)"
+
+if [ -z "$STAGED" ]; then
+  exit 0
+fi
+
+FAILED=0
+
+# ============================================
+# 1. Paths that must never be committed
+#
+# GitGuardian runs at pre-push and would catch a committed key, but by then the
+# secret is already in a commit object and needs history surgery. Catching it
+# here means it never enters the object store.
+# ============================================
+FORBIDDEN="$(forbidden_in "$STAGED")"
+
+if [ -n "$FORBIDDEN" ]; then
+  echo -e "${RED}[Pre-commit] Refusing to commit generated/secret paths:${NC}"
+  echo "$FORBIDDEN" | sed 's/^/  /'
+  echo -e "${YELLOW}  Unstage them (git restore --staged <path>) and add them to .gitignore.${NC}"
+  FAILED=1
+fi
+
+# ============================================
+# 2. Unresolved merge-conflict markers
+#
+# Checks the STAGED blob, not the working tree. Binary blobs are skipped via
+# numstat (git reports "-\t-" for them).
+# ============================================
+TEXT_FILES="$(g diff --cached --numstat --diff-filter=ACM | awk -F'\t' '$1 != "-" { print $3 }')"
+
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  if git show ":$f" 2>/dev/null | grep -qE '^(<{7}|>{7}) '; then
+    echo -e "${RED}[Pre-commit] Unresolved conflict markers in: $f${NC}"
+    FAILED=1
+  fi
+done <<<"$TEXT_FILES"
+
+# ============================================
+# 3. Oversized blobs (2 MB)
+#
+# Added and modified files both count, so re-exporting a large image is caught
+# too. The three existing large PNGs are allowlisted by exact path.
+# ============================================
+MAX_BYTES=2097152
+
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  oversize_allowed "$f" && continue
+  size="$(git cat-file -s ":$f" 2>/dev/null || echo 0)"
+  if [ "$size" -gt "$MAX_BYTES" ]; then
+    echo -e "${RED}[Pre-commit] File exceeds 2 MB ($((size / 1024)) KB): $f${NC}"
+    echo -e "${YELLOW}  Compress it (public/images has -p-2600 / -p-3200 variants), or add its exact path to oversize_allowed.${NC}"
+    FAILED=1
+  fi
+done <<<"$STAGED"
+
+if [ "$FAILED" = "1" ]; then
+  echo ""
+  echo -e "${RED}[Pre-commit] Checks failed, commit aborted.${NC}"
+  echo -e "${YELLOW}Fix the above. Do not reach for --no-verify.${NC}"
+  exit 1
+fi
+
+echo -e "${GREEN}[Pre-commit] Checks passed${NC}"

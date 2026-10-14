@@ -3,8 +3,10 @@
 Bindings for the shared `eval-*` / ops skills at `~/.claude/skills/`. Those are
 procedures ported from another codebase; this file is what makes them true here.
 
-Measured 2026-08-16 at `315e16e`. **This repo has no `CLAUDE.md`** — unlike the
-other three — so until one exists this file is the only written guidance here.
+Measured 2026-08-16 at `315e16e`. §2, §6, §12 and the baselines were updated
+2026-10-12 (TEM-127) for the gate and CI added by TEM-125 and TEM-127; the rest
+is as measured in August. `CLAUDE.md` (added 2026-10-13) holds the working
+rules; this file holds only the skill bindings.
 
 ## 1. Deployables
 
@@ -21,8 +23,15 @@ TypeScript, Next.js 16 (webpack, not turbopack — both `dev` and `build` pass
 npm run lint         eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 50
 npm run type-check   tsc --noEmit
 npm run build        next build --webpack (stderr filtered through grep)
-npm run check        lint + type-check + build
+bin/check            the gate: hook self-test, app-config.json, lint, type-check, build
+bin/check --fast     the same without the build
+bin/check --full     what CI runs (same steps as the default today)
+npm run check        alias for bin/check
 ```
+
+The build script uses `PIPESTATUS`, so npm must run scripts with bash. That is
+the default on macOS; CI sets `NPM_CONFIG_SCRIPT_SHELL: bash` because ubuntu's
+`/bin/sh` is dash.
 
 `--max-warnings 50` is a **calibrated tolerance, not zero** — any skill
 reporting "lint passes" here must say how many warnings were tolerated, or the
@@ -47,8 +56,17 @@ Vercel (assumed from the sibling repos and the Next.js stack — **not verified*
 there is no `vercel.json` in this repo). Use the `vercel` skill, but confirm the
 project slug before trusting output.
 
-**No CI.** No `.github/workflows/` at all — the only gate is a local pre-push
-hook (see §12).
+**CI** (`.github/workflows/`):
+
+- `ci.yml` — job `gate` runs `bin/check --full` on every pull request to `main`
+  (plus `workflow_dispatch`), Node 24, no path filters, no push trigger. The
+  build reads no environment variable, so CI sets no secrets.
+- `dependency-audit.yml` — `npm audit --omit=dev` every Monday 13:00 UTC (plus
+  `workflow_dispatch`); red on any advisory in the production tree.
+
+The CI run is the backstop for the pre-push hook (§12), which `--no-verify` and
+cloud sessions skip. Whether GitHub requires the `gate` check to pass before
+merging is branch protection, a repo setting that is not in this repo.
 
 ## 7. Error tracking
 
@@ -83,14 +101,17 @@ None.
 
 ## 12. Git workflow
 
-`main`, plus a merged `animation` branch. **A pre-push hook already exists** and
-is installed by `npm run prepare`, which writes `.git/hooks/pre-push` calling
-`npm run pre-push` (type-check + lint + build).
+`main`, plus a merged `animation` branch. Hooks are version-controlled in
+`.githooks/` and wired by `npm ci` / `npm install` through the `prepare` script
+(`git config core.hooksPath .githooks`, shared by worktrees):
 
-This is the precedent for the workspace kernel's pre-push wiring — but note it
-writes into `.git/hooks/` directly rather than using a version-controlled
-`.githooks/` + `core.hooksPath`, so the hook body is not reviewable and not
-shared.
+- `pre-commit` — fast checks on staged blobs only: forbidden paths (`.env*`,
+  `node_modules/`, `.next/`, key files), conflict markers, blobs over 2 MB.
+  `--self-test` pins its rules.
+- `pre-push` — `ggshield secret scan pre-push` when installed, then `bin/check`.
+
+Both hooks and CI call the one gate, `bin/check`. Fix a red gate; don't
+`--no-verify`.
 
 ---
 
@@ -115,11 +136,26 @@ shared.
 - **Duplicate config files**: `next.config.js` *and* `next.config.ts`;
   `postcss.config.js` *and* `postcss.config.mjs`. Which one Next resolves is
   not determined here — a skill must not assume.
-- Zero test files, zero CI.
+- Zero test files. (CI exists since TEM-127; the only automated checks are the
+  gate's: hook self-test, `scripts/check-app-config.mjs`, lint, type-check,
+  build.)
+- **Dev-only advisories, left open on purpose** (`npm audit`, 2026-10-12: 9, of
+  which 2 moderate and 7 high; `npm audit --omit=dev` reports 0, which is what
+  `dependency-audit.yml` enforces). All sit in the build/lint toolchain:
+  `tailwindcss` 3.x via `braces` (GHSA-vfj7-8cjw-p6xm), `micromatch`,
+  `chokidar`, `postcss-nested` and `postcss-selector-parser`
+  (GHSA-rj75-hqrm-r3gf); and `eslint-config-next` via
+  `@next/eslint-plugin-next` and `fast-glob`. `npm audit fix --force` would
+  move Tailwind to 4.x and `eslint-config-next` to 14.x (a downgrade), so
+  clearing them is a separate ticket. Re-run `npm audit` before trusting this
+  list.
 
 ## Limits
 
 Static read at `315e16e`. The orphan list is computed from string matches on
 `sections/<Name>` across `src/**/*.ts{,x}` — it would miss a dynamic import or
 a barrel re-export, so treat entries as **deletion candidates**, not a delete
-list. The Vercel deployment claim is unverified. Nothing was run.
+list. The Vercel deployment claim is unverified. The August measurements
+(§1–5, §7–11, orphan list) were read statically, not run. The `npm audit`
+figures were run locally on 2026-10-12; the workflows have not run on GitHub
+as of that date.
