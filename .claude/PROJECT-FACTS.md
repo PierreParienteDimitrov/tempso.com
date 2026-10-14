@@ -66,7 +66,8 @@ Linear workspace **Tempso**, prefix `TEM-`, claude.ai Linear (Tempso) connector.
   CSS modules (`*.module.css`), plus `src/styles/preserved.module.css` and a
   `CSS_MIGRATION_STRATEGY.md` describing a migration in progress.
 - `src/lib/theme.ts` — the closest thing to design tokens.
-- **No shared component package.** Nothing is imported from `tempso-app`;
+- **No shared component package.** Nothing is imported from `web-app`
+  (renamed from `tempso-app` 2026-08-16);
   the dark theme was copied from it by hand (`c0ff78f`).
 - 3D: `@react-three/fiber` + `drei` + `postprocessing`; animation:
   `framer-motion`.
